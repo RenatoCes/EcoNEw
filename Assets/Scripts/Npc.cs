@@ -4,11 +4,27 @@ using UnityEngine.UI;
 
 public class Npc : MonoBehaviour
 {
-    public string mensagem = "Olá, bem-vindo à minha loja!";
+    public string mensagem = "Olá, gostaria de visitar a minha loja?";
     public GameObject caixaDeTexto;
-    public Text textoUI;
+    public Text textoNPC;
+    public Text textoRespostaPlayer;
     private bool jogadorPerto = false;
     private bool textoVisivel = false;
+
+    
+    private string[] playerResponses =
+{
+        "1 - Como você está?",
+        "2 - O que você faz por aqui?",
+        "3 - Adeus."
+    };
+
+    private string[] npcResponses =
+    {
+        "Estou bem, obrigado por perguntar!",
+        "Eu protejo esta vila dos perigos da floresta.",
+        "Até logo, viajante!"
+    };
 
     void Start()
     {
@@ -20,22 +36,29 @@ public class Npc : MonoBehaviour
 
     void Update()
     {
-        if (jogadorPerto && Input.GetKeyDown(KeyCode.Return)) // Tecla Enter
+        if (jogadorPerto && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            print("Tecla Enter pressionada");
-            AlternarMensagem();
+
+        }
+        if (jogadorPerto && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+        }
+        if (jogadorPerto && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+
         }
     }
 
-    void AlternarMensagem()
+    void AlternarVisibilidadeMensagem()
     {
-        if (caixaDeTexto != null && textoUI != null)
+        if (caixaDeTexto != null && textoNPC != null)
         {
             textoVisivel = !textoVisivel;
             caixaDeTexto.SetActive(textoVisivel);
             if (textoVisivel)
             {
-                textoUI.text = mensagem;
+                textoNPC.text = mensagem;
             }
         }
     }
@@ -45,6 +68,7 @@ public class Npc : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jogadorPerto = true;
+            AlternarVisibilidadeMensagem();
             print("Jogador perto");
         }
     }
@@ -61,4 +85,8 @@ public class Npc : MonoBehaviour
             }
         }
     }
+    //Fazer função que sirva para exibir pergunta do player
+    //Fazer função que sirva para exibir resposta do NPC
+    //Fazer com que as opções de resposta do player sejam realizadas por meio de botões
+    //Navegação da tela seja pormeio de botões que estejam na área de dialogo
 }

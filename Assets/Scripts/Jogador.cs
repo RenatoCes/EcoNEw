@@ -7,7 +7,7 @@ public class Jogador : MonoBehaviour
     private float fome;
     private float higiene;
     private Rigidbody2D rb;
-    public float velocidade = 25f;
+    public float velocidade = 10f;
 
     public float Saude
     {
